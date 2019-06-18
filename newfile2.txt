@@ -1,0 +1,2 @@
+testdata2
+data added after stage, but file re-added
