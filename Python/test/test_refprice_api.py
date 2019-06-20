@@ -6,7 +6,7 @@ import simple_log
 
 API_BASE_URL = 'http://localhost:6600/api/prices'
 
-
+""" TODO finish making serializable object
 class JsonSerializable(object):
 
     def serialize(self):
@@ -31,12 +31,14 @@ class Orderline(JsonSerializable):
     def default(self, o):
         return o.__dict__
 
+"""
+
 
 def current_function_name():
     return sys._getframe(1).f_code.co_name
 
 
-def ttest_refprice_get():
+def test_refprice_get():
     logger = simple_log.get_log()
     resp = requests.get(f"{API_BASE_URL}/some_fake_ean/23")
     assert resp.status_code == 200 or resp.status_code == 404, 'HTTP response should return OK or notfount'
@@ -58,7 +60,7 @@ def ttest_refprice_get():
             assert obj['adjusted_price'] == 22 or obj['adjusted_price'] == 24, 'unexpected adjusted_price'
 
 
-def ttest_refprice_post_without_content():
+def test_refprice_post_without_content():
     data = None
     logger = simple_log.get_log()
     resp = requests.post(f'{API_BASE_URL}', data=data)
